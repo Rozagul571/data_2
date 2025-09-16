@@ -14,7 +14,7 @@ class RepositoryLanguageSerializer(serializers.ModelSerializer):
         fields = ('language', 'code_size')
 
 class RepositorySerializer(serializers.ModelSerializer):
-    languages = RepositoryLanguageSerializer(source='repositorylanguage_set', many=True)
+    languages = RepositoryLanguageSerializer(many=True)
 
     class Meta:
         model = Repository
