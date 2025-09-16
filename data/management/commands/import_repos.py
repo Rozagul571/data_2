@@ -9,7 +9,6 @@ from data.models import Repository, Owner, RepositoryLanguage, Language
 
 
 class Command(BaseCommand):
-
     def add_arguments(self, parser):
         parser.add_argument('file_path', type=str)
 
@@ -52,9 +51,8 @@ class Command(BaseCommand):
                             repo_lang.code_size = lang.get('size', 0)
                             repo_lang.full_clean()
                             repo_lang.save()
-
                 except ValidationError as e:
-                    self.stdout.write(self.style.ERROR(f'Validation error for repo {repo.get("name", "")}: {e}'))
+                    self.stdout.write(self.style.ERROR(f'validation error for repo {repo.get("name", "")}: {e}'))
                     continue
 
         self.stdout.write(self.style.SUCCESS(f'Loaded {total} repositories'))

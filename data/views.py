@@ -7,11 +7,8 @@ from .models import RepositoryLanguage
 class LanguageReportView(APIView):
     def get(self, request):
         stats = (
-            RepositoryLanguage.objects
-            .values('language__name', year=ExtractYear('repository__createdAt'))
-            .annotate(repo_count=Count('repository', distinct=True))
-            .order_by('year', '-repo_count')
-        )
+            RepositoryLanguage.objects.values('language__name', year=ExtractYear('repository__createdAt'))
+            .annotate(repo_count=Count('repository', distinct=True)).order_by('year', '-repo_count'))
 
         result = {}
         for stat in stats:
