@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Owner(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -15,7 +16,7 @@ class Language(models.Model):
 class Repository(models.Model):
     name = models.CharField(max_length=100)
     # date
-    createdAt = models.DateTimeField(null=True, blank=True)
+    createdAt = models.DateTimeField()
     # relationship
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name="repositories")
     languages = models.ManyToManyField(Language, through='RepositoryLanguage')
